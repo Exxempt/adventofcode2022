@@ -49,7 +49,6 @@ $i3 = 2
     $y = $rucksack[$i2].ToCharArray()
     $z = $rucksack[$i3].ToCharArray()
     
-    $all = $x + $y + $z
     $diff1 = Compare-Object -ReferenceObject $x -DifferenceObject $y -ExcludeDifferent
     $diff2 = Compare-Object -ReferenceObject $y -DifferenceObject $z -ExcludeDifferent
     
