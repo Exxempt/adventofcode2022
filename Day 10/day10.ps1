@@ -4,7 +4,7 @@ $cycle = 1
 $X = 1
 $outcome = @()
 
-$text | % {
+$text | ForEach-Object {
     $command = $_.Split(" ")
 
     if ($command[0] -eq "noop") {
@@ -16,7 +16,7 @@ $text | % {
         $cycle++
     }
     if ($command[0] -eq "addx") {
-        1..2 | % {
+        1..2 | ForEach-Object {
             if($_ -eq 1) {
                 $round = $(New-Object -TypeName PSObject -Property $([ordered]@{
                     cycle = $cycle
@@ -37,7 +37,7 @@ $text | % {
 }
 
 $part1 = 0
-$outcome | where-object  {$_.cycle -eq 20 -or $_.cycle -eq 60 -or $_.cycle -eq 100 -or $_.cycle -eq 140 -or $_.cycle -eq 180 -or $_.cycle -eq 220} | % {
+$outcome | where-object  {$_.cycle -eq 20 -or $_.cycle -eq 60 -or $_.cycle -eq 100 -or $_.cycle -eq 140 -or $_.cycle -eq 180 -or $_.cycle -eq 220} | ForEach-Object {
     $part1 = $part1 + ($_.cycle * $_.value)
 }
 
@@ -45,7 +45,7 @@ $part1
 
 $screen = ""
 $CRT = 0
-$outcome | % { 
+$outcome | ForEach-Object { 
     [int]$val = $_.value
     $pixels = @(($val - 1),$val,($val + 1))
     $pixels
